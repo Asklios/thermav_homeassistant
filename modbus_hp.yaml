@@ -1,0 +1,851 @@
+########################################################
+####### LG Therma V
+########################################################
+modbus:
+  - name: "heatpump"
+    type: tcp
+    host: !secret lg_heatpump_modbus_host_ip
+    port: !secret lg_heatpump_modbus_port
+
+    sensors:
+      - name: "Therma V Error Code" # Fehlerkennung
+        unique_id: "modbus.thermav_error_code"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 0  # 30001-30001
+        scan_interval: 30
+        input_type: input
+        data_type: uint16
+        state_class: measurement
+
+      - name: "Therma V ODU - Cycle" # ODU-Betriebszyklus
+        unique_id: "modbus.thermav_odu_cycle"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 1  # 30002-30001
+        scan_interval: 30
+        input_type: input
+        data_type: uint16
+        state_class: measurement
+
+      - name: "Therma V Water Inlet Temperature" # Wassereinlasstemp.
+        unique_id: "modbus.thermav_water_inlet_temp"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 2  # 30003-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Water Outlet Temperature" # Wasserauslasstemp.
+        unique_id: "modbus.thermav_water_outlet_temp"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 3  # 30004-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Backup Heater Outlet Temperature" # Auslasstemp. Ersatzheizgerät
+        unique_id: "modbus.thermav_backup_heater_temp"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 4  # 30005-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Tank Water Temperature" # Wassertemp. Warmwasserbehälter
+        unique_id: "modbus.thermav_tank_water_temp"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 5  # 30006-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Solar Collector Temperature" # Sonnenkollektortemp.
+        unique_id: "modbus.thermav_solar_collector_temp"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 6  # 30007-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Room Air Temperature Circuit 1" # Raumlufttemp. (Kreislauf 1)
+        unique_id: "modbus.thermav_room_temp_circuit1"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 7  # 30008-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Current Flow Rate" # Aktuelle Durchflussrate
+        unique_id: "modbus.thermav_current_flow_rate"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 8  # 30009-30001
+        scan_interval: 30
+        input_type: input
+        data_type: uint16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "L/min"
+        device_class: volume_flow_rate
+        state_class: measurement
+
+      - name: "Therma V Flow Temperature Circuit 2" # Durchflusstemp. (Kreislauf 2)
+        unique_id: "modbus.thermav_flow_temp_circuit2"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 9  # 30010-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Room Air Temperature Circuit 2" # Raumlufttemp. (Kreislauf 2)
+        unique_id: "modbus.thermav_room_temp_circuit2"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 10  # 30011-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Energy Status Input" # Energiezustand-Eingang
+        unique_id: "modbus.thermav_energy_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 11  # 30012-30001
+        scan_interval: 30
+        input_type: input
+        data_type: uint16
+        state_class: measurement
+
+      - name: "Therma V Outdoor Air Temperature" # Außenlufttemp.
+        unique_id: "modbus.thermav_outdoor_temp"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 12  # 30013-30001
+        scan_interval: 30
+        input_type: input
+        data_type: int16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Water Pressure" # Wasserdruck
+        unique_id: "modbus.thermav_water_pressure"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 13  # 30014-30001
+        scan_interval: 30
+        input_type: input
+        data_type: uint16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "bar"
+        device_class: pressure
+        state_class: measurement
+
+
+      # Holding Register
+      - name: "Therma V Operation Mode" # Betriebsmodus
+        unique_id: "modbus.thermav_operation_mode"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 0  # 40001
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        state_class: measurement
+
+      - name: "Therma V Control Method (Circuit 1/2)" # Steuermethode (Kreis 1/2)
+        unique_id: "modbus.thermav_control_method"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 1  # 40002
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        state_class: measurement
+
+      - name: "Therma V Target Temp. Circuit 1" # Zieltemp. (Heizung / Kühlung) Kreislauf 1
+        unique_id: "modbus.thermav_target_temp_circuit_1"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 2  # 40003
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Room Air Temp. Circuit 1" # Raumlufttemp. Kreislauf 1
+        unique_id: "modbus.thermav_room_air_temp_circuit_1"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 3  # 40004
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Auto Mode Target Circuit 1" # Schaltwert (Ziel) im Auto-Modus Kreislauf 1
+        unique_id: "modbus.thermav_auto_mode_target_circuit_1"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 4 #40005 
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        precision: 1
+        unit_of_measurement: "K"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Target Temp. Circuit 2" # Zieltemp. (Heizung / Kühlung) Kreislauf 2
+        unique_id: "modbus.thermav_target_temp_circuit_2"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 5  # 40006
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Room Air Temp. Circuit 2" # Raumlufttemp. Kreislauf 2
+        unique_id: "modbus.thermav_room_air_temp_circuit_2"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 6  # 40007
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Auto Mode Target Circuit 2" # Schaltwert (Ziel) im Auto-Modus Kreislauf 2
+        unique_id: "modbus.thermav_auto_mode_target_circuit_2"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 7  # 40008
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        precision: 1
+        unit_of_measurement: "K"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V WW Target Temp." # WW-Ziel Temp.
+        unique_id: "modbus.thermav_ww_target_temp"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 8  # 40009
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Therma V Energy State Input" # Energiezustand-Eingang
+        unique_id: "modbus.thermav_energy_state_input"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 9  # 40010
+        scan_interval: 30
+        input_type: holding
+        data_type: uint16
+        state_class: measurement
+
+    binary_sensors:
+      - name: "Therma V Water flow status" # Status Wasserdurchfluss
+        unique_id: "modbus.thermav_water_flow_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 0  # 10001
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Water Pump status" # Wasserpumpenstatus
+        unique_id: "modbus.thermav_water_pump_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 1  # 10002
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Ext. Water Pump status" # Ext. Wasserpumpenstatus
+        unique_id: "modbus.thermav_ext_water_pump_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 2  # 10003
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Compressor status" # Kompressorstatus
+        unique_id: "modbus.thermav_compressor_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 3  # 10004
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Defrosting status" # Abtaustatus
+        unique_id: "modbus.thermav_defrosting_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 4  # 10005
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V DHW heating status" # WW-Heizstatus (WW Thermisch Ein/Aus)
+        unique_id: "modbus.thermav_dhw_heating_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 5  # 10006 (DHW Thermal On/Off)
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V DHW Tank disinfection status" # Desinfektionsstatus WW-Speicher
+        unique_id: "modbus.thermav_dhw_tank_disinfection_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 6  # 10007
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Silent mode status" # Status Ruhemodus
+        unique_id: "modbus.thermav_silent_mode_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 7  # 10008
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Cooling status" # Kühlstatus
+        unique_id: "modbus.thermav_cooling_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 8  # 10009
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Solar pump status" # Status der Solarpumpe
+        unique_id: "modbus.thermav_solar_pump_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 9  # 10010
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Backup heater (Step 1) status" # Status Zusatzheizung (Schritte 1)
+        unique_id: "modbus.thermav_backup_heater_step_1_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 10  # 10011
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Backup heater (Step 2) status" # Status Zusatzheizung (Schritte 2)
+        unique_id: "modbus.thermav_backup_heater_step_2_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 11  # 10012
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V DHW boost heater status" # Status WW-Verstärkerheizung
+        unique_id: "modbus.thermav_dhw_boost_heater_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 12 #10013
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Error status" # Fehlermeldung
+        unique_id: "modbus.thermav_error_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 13 #10014
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Emergency Operation Available (Space heating/cooling)" # Notbetrieb verfügbar (Raumheizung/-Kühlung)
+        unique_id: "modbus.thermav_emergency_operation_available"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 14 #10015
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Emergency Operation Available (DHW)" # Notbetrieb verfügbar (WW)
+        unique_id: "modbus.thermav_emergency_operation_available_dhw"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 15 #10016
+        scan_interval: 30
+        input_type: discrete_input
+
+      - name: "Therma V Mix pump status" # Status Mischpumpe
+        unique_id: "modbus.thermav_mix_pump_status"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 16 #10017
+        scan_interval: 30
+        input_type: discrete_input
+
+    switches:
+      - name: "Therma V Enable/Disable (Heating/Cooling)" # Aktivieren / Deaktivieren (Heizung / Kühlung)
+        unique_id: "modbus.thermav_main_switch"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 0 #00001
+        write_type: coil
+        command_on: 1
+        command_off: 0
+        verify:
+          input_type: coil
+          address: 0
+          state_on: 1
+          state_off: 0
+      
+      - name: "Therma V Enable/Disable (DHW)" # Aktivieren / Deaktivieren (ECS)
+        unique_id: "modbus.thermav_main_switch_ww"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 1 #00002
+        write_type: coil
+        command_on: 1
+        command_off: 0
+        verify:
+          input_type: coil
+          address: 1
+          state_on: 1
+          state_off: 0
+
+      - name: "Therma V Silent Mode Set" # Einstellung Ruhemodus
+        unique_id: "modbus.thermav_set_silent_mode"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 2 #00003
+        write_type: coil
+        command_on: 1
+        command_off: 0
+        verify:
+          input_type: coil
+          address: 2
+          state_on: 1
+          state_off: 0
+
+      - name: "Therma V Trigger Disinfection operation" # Auslösung Desinfektionsbetrieb
+        unique_id: "modbus.thermav_trigger_disinfection_operation"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 3 #00004
+        write_type: coil
+        command_on: 1
+        command_off: 0
+        verify:
+          input_type: coil
+          address: 3
+          state_on: 1
+          state_off: 0
+
+      - name: "Therma V Emergency Stop" # Notaus
+        unique_id: "modbus.thermav_emergency_stop"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 4 #00005
+        write_type: coil
+        command_on: 1
+        command_off: 0
+        verify:
+          input_type: coil
+          address: 4
+          state_on: 1
+          state_off: 0
+
+      - name: "Therma V Trigger Emergency Operation" # Auslöser Notaus-Betrieb
+        unique_id: "modbus.thermav_trigger_emergency_operation"
+        slave: !secret lg_heatpump_modbus_slave
+        address: 5 #00006
+        write_type: coil
+        command_on: 1
+        command_off: 0
+        verify:
+          input_type: coil
+          address: 5
+          state_on: 1
+          state_off: 0
+
+  
+input_number:
+  thermav_auto_mode_target_circuit_1:
+    name: "Therma V Auto Mode Target Circuit 1"
+    min: -5
+    max: 5
+    step: 1
+    unit_of_measurement: "K"
+    icon: mdi:thermometer
+
+  thermav_auto_mode_target_circuit_2:
+    name: "Therma V Auto Mode Target Circuit 2"
+    min: -5
+    max: 5
+    step: 1
+    unit_of_measurement: "K"
+    icon: mdi:thermometer
+
+  thermav_target_temp_circuit_1:
+    name: "Therma V Target Temperature Circuit 1"
+    min: 5
+    max: 55
+    step: 0.5
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+
+  thermav_target_temp_circuit_2:
+    name: "Therma V Target Temperature Circuit 2"
+    min: 5
+    max: 65
+    step: 0.5
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+
+  thermav_target_temp_ww:
+    name: "Therma V Target Temperature WW"
+    min: 40
+    max: 60
+    step: 0.5
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+
+input_select:
+  thermav_operation_mode:
+    name: "Selector Therma V Operation Mode"
+    options:
+      - "Cooling"
+      - "Heating"
+      - "Auto"
+    icon: mdi:heat-pump-outline
+
+  thermav_control_method:
+    name: "Selector Therma V Control Method"
+    options:
+      - "Water outlet temp. control"
+      - "Water inlet temp. control"
+      - "Room air control"
+    icon: mdi:tune-vertical
+
+  thermav_energy_state_input:
+    name: "Selector Therma V Energy state input"
+    options:
+      - "Not Use"
+      - "Forced off"
+      - "Normal operation"
+      - "On-recommendation"
+      - "On-command"
+      - "On-command step 2"
+      - "On-recommendation Step 1"
+      - "Energy Saving mode"
+      - "Super Energy saving mode"
+
+
+automation:
+
+  # Set Operation Mode
+  - id: "thermav_automation_operation_mode_update"
+    alias: "Therma V Operation Mode Update"
+    description: "Select the Operation Mode of the Therma V"
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_select.thermav_operation_mode
+    condition: []
+    variables:
+      cooling: 0
+      auto: 3
+      heating: 4
+    action:
+      - action: modbus.write_register
+        data:
+          hub: heatpump
+          slave: !secret lg_heatpump_modbus_slave
+          address: 0
+          value: >-
+            {% if is_state('input_select.thermav_operation_mode', 'Cooling') %} {{cooling}}
+            {% elif is_state('input_select.thermav_operation_mode', 'Heating') %} {{heating}}
+            {% else %}
+            {{auto}}
+            {% endif %}
+    mode: single
+
+  - id: "thermav_automation_operation_mode_input_select_update"
+    alias: "Therma V Operation Mode InputSelect Update"
+    description: "Select the Operation Mode of the Therma V - Read from State"
+    triggers:
+      - trigger: state
+        entity_id:
+          - modbus.thermav_operation_mode
+    condition: []
+    action:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.thermav_operation_mode
+        data:
+          options: >
+            {% if is_state('modbus.thermav_operation_mode', '3') %}
+            Auto
+            {% elif is_state('modbus.thermav_operation_mode', '4') %}
+            Heating
+            {% else %}
+            Cooling
+            {% endif %}
+    mode: single
+  
+  # Set WW Target Temperature
+  - id: "thermav_automation_ww_target_temperatur_update"
+    alias: "Therma V WW Target Temperature Update"
+    description: "Update WW Target Temperature on the Therma V"
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_number.thermav_target_temp_ww
+    condition: []
+    action:
+      - action: modbus.write_register
+        data_template:
+          hub: heatpump
+          slave: !secret lg_heatpump_modbus_slave
+          address: 8
+          value: "{{ states('input_number.thermav_target_temp_ww') |float *10 | int}}"
+    mode: single
+
+  - id: "thermav_automation_ww_target_temperatur_input_slider_update"
+    alias: "Therma V WW Target Temperature Slider Update"
+    description: "Update InputSlider for WW Target Temperature"
+    triggers:
+      - trigger: state
+        entity_id:
+          - modbus.thermav_ww_target_temp
+    condition: []
+    action:
+      - action: input_number.set_value
+        target:
+          entity_id: input_number.thermav_target_temp_ww
+        data:
+          value: "{{ states('modbus.thermav_ww_target_temp') }}"
+    mode: single
+
+  # Control Method automations
+  - id: "thermav_automation_control_method_update"
+    alias: "Therma V Control Method Update"
+    description: "Select the Control Method of the Therma V"
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_select.thermav_control_method
+    condition: []
+    variables:
+      auslass: 0
+      einlass: 1
+      raumluft: 2
+    action:
+      - action: modbus.write_register
+        data:
+          hub: heatpump
+          slave: !secret lg_heatpump_modbus_slave
+          address: 1
+          value: >-
+            {% if is_state('input_select.thermav_control_method', 'Water outlet temp. control') %} {{auslass}}
+            {% elif is_state('input_select.thermav_control_method', 'Water inlet temp. control') %} {{einlass}}
+            {% else %}
+            {{raumluft}}
+            {% endif %}
+    mode: single
+
+  - id: "thermav_automation_control_method_input_select_update"
+    alias: "Therma V Control Method InputSelect Update"
+    description: "Select the Control Method of the Therma V - Read from State"
+    triggers:
+      - trigger: state
+        entity_id:
+          - modbus.thermav_control_method
+    condition: []
+    action:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.thermav_control_method
+        data:
+          option: >
+            {% if is_state('modbus.thermav_control_method', '0') %}
+            Water outlet temp. control
+            {% elif is_state('modbus.thermav_control_method', '1') %}
+            Water inlet temp. control
+            {% else %}
+            Room air control
+            {% endif %}
+    mode: single
+
+  # Auto Mode Target for Circuit 1
+  - id: "thermav_automation_auto_mode_target_circuit_1_update"
+    alias: "Therma V Auto Mode Target Circuit 1 Update"
+    description: "Update Auto Mode Target for Circuit 1 on the Therma V"
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_number.thermav_auto_mode_target_circuit_1
+    condition: []
+    action:
+      - action: modbus.write_register
+        data:
+          hub: heatpump
+          slave: !secret lg_heatpump_modbus_slave
+          address: 4
+          value: >
+            {% if states('input_number.thermav_auto_mode_target_circuit_1') | int(default=0) < 0 %}
+            {{states('input_number.thermav_auto_mode_target_circuit_1') | int + 65536 }}
+            {% else %}
+            {{states('input_number.thermav_auto_mode_target_circuit_1') | int }}
+            {% endif %}
+    mode: single
+
+  - id: "thermav_automation_auto_mode_target_circuit_1_input_slider_update"
+    alias: "Therma V Auto Mode Target Circuit 1 Slider Update"
+    description: "Update InputSlider for Auto Mode Target Circuit 1"
+    triggers:
+      - trigger: state
+        entity_id:
+          - modbus.thermav_auto_mode_target_circuit_1
+    condition: []
+    action:
+      - action: input_number.set_value
+        target:
+          entity_id: input_number.thermav_auto_mode_target_circuit_1
+        data:
+          value: "{{ states('modbus.thermav_auto_mode_target_circuit_1') }}"
+    mode: single
+
+  # Auto Mode Target for Circuit 2
+  - id: "thermav_automation_auto_mode_target_circuit_2_update"
+    alias: "Therma V Auto Mode Target Circuit 2 Update"
+    description: "Update Auto Mode Target for Circuit 2 on the Therma V"
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_number.thermav_auto_mode_target_circuit_2
+    condition: []
+    action:
+      - action: modbus.write_register
+        data:
+          hub: heatpump
+          slave: !secret lg_heatpump_modbus_slave
+          address: 7
+          value: >
+            {% if states('input_number.thermav_auto_mode_target_circuit_2') | int(default=0) < 0 %}
+            {{states('input_number.thermav_auto_mode_target_circuit_2') | int + 65536 }}
+            {% else %}
+            {{states('input_number.thermav_auto_mode_target_circuit_2') | int }}
+            {% endif %}
+    mode: single
+
+  - id: "thermav_automation_auto_mode_target_circuit_2_input_slider_update"
+    alias: "Therma V Auto Mode Target Circuit 2 Slider Update"
+    description: "Update InputSlider for Auto Mode Target Circuit 2"
+    triggers:
+      - trigger: state
+        entity_id:
+          - modbus.thermav_auto_mode_target_circuit_2
+    condition: []
+    action:
+      - action: input_number.set_value
+        target:
+          entity_id: input_number.thermav_auto_mode_target_circuit_2
+        data:
+          value: "{{ states('modbus.thermav_auto_mode_target_circuit_2') }}"
+    mode: single
+
+  # Target Temperature for Circuit 1
+  - id: "thermav_automation_target_temp_circuit_1_update"
+    alias: "Therma V Target Temperature Circuit 1 Update"
+    description: "Update Target Temperature for Circuit 1 on the Therma V"
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_number.thermav_target_temp_circuit_1
+    condition: []
+    action:
+      - action: modbus.write_register
+        data:
+          hub: heatpump
+          slave: !secret lg_heatpump_modbus_slave
+          address: 2
+          value: "{{ states('input_number.thermav_target_temp_circuit_1') |float *10 | int}}"
+    mode: single
+
+  - id: "thermav_automation_target_temp_circuit_1_input_slider_update"
+    alias: "Therma V Target Temperature Circuit 1 Slider Update"
+    description: "Update InputSlider for Target Temperature Circuit 1"
+    triggers:
+      - trigger: state
+        entity_id:
+          - modbus.thermav_target_temp_circuit_1
+    condition: []
+    action:
+      - action: input_number.set_value
+        target:
+          entity_id: input_number.thermav_target_temp_circuit_1
+        data:
+          value: "{{ states('modbus.thermav_target_temp_circuit_1') }}"
+    mode: single
+
+  # Target Temperature for Circuit 2
+  - id: "thermav_automation_target_temp_circuit_2_update"
+    alias: "Therma V Target Temperature Circuit 2 Update"
+    description: "Update Target Temperature for Circuit 2 on the Therma V"
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_number.thermav_target_temp_circuit_2
+    condition: []
+    action:
+      - action: modbus.write_register
+        data:
+          hub: heatpump
+          slave: !secret lg_heatpump_modbus_slave
+          address: 5
+          value: "{{ states('input_number.thermav_target_temp_circuit_2') |float *10 | int}}"
+    mode: single
+
+  - id: "thermav_automation_target_temp_circuit_2_input_slider_update"
+    alias: "Therma V Target Temperature Circuit 2 Slider Update"
+    description: "Update InputSlider for Target Temperature Circuit 2"
+    triggers:
+      - trigger: state
+        entity_id:
+          - modbus.thermav_target_temp_circuit_2
+    condition: []
+    action:
+      - action: input_number.set_value
+        target:
+          entity_id: input_number.thermav_target_temp_circuit_2
+        data:
+          value: "{{ states('modbus.thermav_target_temp_circuit_2') }}"
+    mode: single
